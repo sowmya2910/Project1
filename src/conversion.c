@@ -91,57 +91,69 @@ uint8_t my_itoa(int32_t data,uint8_t* ptr, uint32_t base)
  ***********************************************************************/
 int32_t my_atoi(uint8_t *ptr, uint8_t digits, uint32_t base)
 {
-	int i=0,q=0;
-	int flag;
-	int32_t res=0;
-	int32_t value=0;
-	int32_t counter=0;
+	/* Initializing variables */
+	int f;
+	int i=0,j=0;
+	int32_t val=0;
+	int32_t count=0;
+	int32_t final=0;
+	/* Checking if ASCII value is negative */
 	if(*ptr == '-')
 	{
 		i++;
-		q++;
-		counter++;
-		flag=1;
+		j++;
+		count++;
+		/* Initializing flag to 1 */
+		f=1;
 	}
+	/* Checking if base is 10 */
 	if(base==10)
 	{
+		/* Conversion */
 		while(i<digits-1)
   		{
-			res= res*10+*(ptr+i)-'0';
+			final= final*10+*(ptr+i)-'0';
 			i++;
   		}
 	}
+	/* Checking if base is 2 */
 	if(base==2)
 	{
+		/* Conversion */
 		while(i<digits-1)
   		{
-   			res = res + *(ptr+i) * (2^(digits-2-i));
+   			final = final + *(ptr+i) * (2^(digits-2-i));
    			i++;
   		}
 	}
+	/* Checking if base is 16 */
 	if(base==16)
 	{
+		/* Conversion */
 		while(i<digits-1) 
   		{
   			if((*(ptr+i)-'0')>9)
    			{
-   				value = *(ptr+i)-'a'+10;
+   				val = *(ptr+i)-'a'+10;
    
    			}
   			else
   			{
-  				value=*(ptr+i);
-  				value = value - '0';
+  				val=*(ptr+i);
+  				val = val - '0';
   			}  
 			i++;
-			res =res*16+value;
+			final =final*16+val;
 		}
 	}
-	if(flag==1)
+	/* Checking if flag is 1 */
+	if(f==1)
 	{
-		res= -1*res;
+		/* Changing sign of final value */
+		final= -1*final;
 	}
-	return res;
+	/* Return final converted value */
+	return final;
 }
 
 
