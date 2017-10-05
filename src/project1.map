@@ -497,18 +497,18 @@ LOAD /usr/lib/gcc/x86_64-linux-gnu/6/../../../x86_64-linux-gnu/crtn.o
 .debug_frame
  *(.debug_frame)
 
-.debug_str      0x0000000000000000      0x42f
+.debug_str      0x0000000000000000      0x42b
  *(.debug_str)
- .debug_str     0x0000000000000000      0x315 ./conversion.o
-                                        0x358 (size before relaxing)
- .debug_str     0x0000000000000315       0x1b ./debug.o
-                                        0x2fb (size before relaxing)
- .debug_str     0x0000000000000330        0xc ./main.o
-                                        0x2c6 (size before relaxing)
- .debug_str     0x000000000000033c       0x5c ./memory.o
-                                        0x34a (size before relaxing)
- .debug_str     0x0000000000000398       0x97 ./project1.o
-                                        0x38c (size before relaxing)
+ .debug_str     0x0000000000000000      0x311 ./conversion.o
+                                        0x354 (size before relaxing)
+ .debug_str     0x0000000000000311       0x1b ./debug.o
+                                        0x2f7 (size before relaxing)
+ .debug_str     0x000000000000032c        0xc ./main.o
+                                        0x2c2 (size before relaxing)
+ .debug_str     0x0000000000000338       0x5c ./memory.o
+                                        0x346 (size before relaxing)
+ .debug_str     0x0000000000000394       0x97 ./project1.o
+                                        0x388 (size before relaxing)
 
 .debug_loc
  *(.debug_loc)
