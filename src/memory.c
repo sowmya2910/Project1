@@ -26,45 +26,45 @@ uint8_t* my_memmove(uint8_t *src,uint8_t *dst,size_t length)
     /* Check for NULL condition and finite length */
     if((src !=NULL) && (dst !=NULL) && (length >=0))
     {
+    /* Check for address overlap */
         if(src<dst)
         {
             if((src+length)>dst)
-            /* If there is address overlap */
     		{
                 /* Run for loop */
       			for(i=length;i>0;i--)
      			{
                         /* Copy operation */
-          				*(dst+(i-1))= *(src+(i-1));
+          			*(dst+(i-1))= *(src+(i-1));
       			}
     		}
     		else /* If there is no address overlap */
     		{
-    		    /* Run for loop */
+    		/* Run for loop */
       			for(i=0;i<length;i++)
      			{
                         /* Copy operation */
-          				*(dst+i)= *(src+i);
+          			*(dst+i)= *(src+i);
       			}
     		}
-        }
-        else
-        {
-      			/* Run for loop */
-      			for(i=0;i<length;i++)
-     			{
-                        /* Copy operation */
-         	 			*(dst+i)= *(src+i);
-      			}
+         }
+            else
+            {
+      	    /* Run for loop */
+      		for(i=0;i<length;i++)
+     		{
+                /* Copy operation */
+         	 	*(dst+i)= *(src+i);
+      		}
             }
     		
-        }
-	else
-	{
-		/* NULL */
-	}
-        /* Return pointer to destination */
-        return dst;
+     }
+     else
+     {
+	/* NULL */
+     }
+     /* Return pointer to destination */
+     return dst;
 
 }
 
@@ -139,21 +139,20 @@ uint8_t* my_memset(uint8_t* src, size_t length, uint8_t value)
  ***********************************************************************/
 uint8_t* my_memzero(uint8_t *src, size_t length)
 {
-	uint32_t i=0;
+    uint32_t i=0;
     /* Check for NULL condition and finite length */
     if((src != NULL) && (length > 0))
     {
 	for(i=0;i<length;i++)
-{
+	{
         /* Zero out the memory by replacing 0 in source data */
-        *(src+i)=0;
-        /* Increment src pointer and decrement length */
+        	*(src+i)=0;
         }
     }
-else
-{
+    else
+    {
 	/*NULL*/
-}
+    }
     /* Return pointer to the source */
     return src;
 }
@@ -172,19 +171,19 @@ uint8_t* my_reverse(uint8_t *src,size_t length)
     uint32_t i,j;
     i=0;
     j=length-1;
-        /* Check if i is less than j */
-        while(i<j)
-        {
-            /* Swapping operation */
-            temp=*(src+i);
-            *(src+i)=*(src+j);
-            *(src+j)=temp;
-            /* Increment i and decrement j */
-            i++;
-            j--;
-        }
-        /* Return pointer to the source */
-        return src;
+    /* Check if i is less than j */
+    while(i<j)
+    {
+    /* Swapping operation */
+        temp=*(src+i);
+        *(src+i)=*(src+j);
+        *(src+j)=temp;
+        /* Increment i and decrement j */
+        i++;
+        j--;
+    }
+    /* Return pointer to the source */
+    return src;
 }
 
 

@@ -19,9 +19,7 @@ KL25Z_CFLAGS= \
 -mfpu=fpv4-sp-d16 \
 -specs=nosys.specs
 
-
 KL25Z_LDFLAGS=-T ../platform/MKL25Z128xxx4_flash.ld 
-
 
 BBB_CFLAGS= \
 -mcpu=cortex-a8 \
@@ -62,6 +60,8 @@ OBJS:= $(SOURCES:.c=.o)
 C_DEPS:= $(SOURCES:.c=.d)
 endif
 
+#PHONY Information
+
 .PHONY: compile-all build clean
 
 #Defining Targets
@@ -95,7 +95,9 @@ endif
 	-@echo 'Creating dependency files for assembly files'
 	-$(CC) $(CPPFLAG) $(CFLAGS) $(INCLUDES) -M $< -o $@
 	-@echo ' '	
-	
+
+#Compile,Build and Clean
+
 compile-all:$(OBJS)
 
 build:$(OBJS) $(C_DEPS)

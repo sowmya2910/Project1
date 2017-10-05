@@ -1,4 +1,4 @@
-# SOURCES
+#SOURCES
 
 COM_SOURCES = \
 ./conversion.c \
@@ -13,7 +13,7 @@ KL25Z_SOURCES_C = \
 KL25Z_SOURCES_S = \
 ./startup_MKL25Z4.S
 
-# INCLUDES 
+#INCLUDES 
 
 CMSIS_INCLUDES= \
 -I ../include/CMSIS

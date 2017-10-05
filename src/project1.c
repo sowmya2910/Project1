@@ -19,7 +19,7 @@
 
 #include <stdio.h>
 #include <stdint.h>
-//#include "platform.h"
+#include "platform.h"
 #include "project1.h"
 #include "memory.h"
 #include "conversion.h"
@@ -327,14 +327,6 @@ void project1(void)
   results[5] = test_memcpy();
   results[6] = test_memset();
   results[7] = test_reverse();
-printf("result[0]=%d",results[0]);
-printf("result[1]=%d",results[1]);
-printf("result[2]=%d",results[2]);
-printf("result[3]=%d",results[3]);
-printf("result[4]=%d",results[4]);
-printf("result[5]=%d",results[5]);
-printf("result[6]=%d",results[6]);
-printf("result[7]=%d",results[7]);
   for ( i = 0; i < TESTCOUNT; i++)
   {
     failed += results[i];

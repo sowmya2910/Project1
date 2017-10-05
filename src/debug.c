@@ -7,7 +7,7 @@
  *
  */
 
- //***********************************************************************************
+//***********************************************************************************
 //Function Definitions
 //***********************************************************************************
 /******************************************************************//****
@@ -22,17 +22,20 @@
 void print_memory(uint8_t* start,uint32_t length)
 {
 	uint32_t i;
+	/* Check if length is not zero */
 	while(length != 0)
 	{
-		/* Print each byte of memory in Hexadecimal*/
+		/* Print each byte of memory in Hexadecimal */
 		printf("The byte in hexadecimal %x \n ",*start);
+		/* Increment start and decrement length */
 		start++;
 		length--;
 	}
 }
-#else 
+#else /* If VERBOSE is not defined */
 void print_memory(uint8_t* start,uint32_t length)
 	{
+		/* Do NULL */
 		printf("NULL");
 		
 	}

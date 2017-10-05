@@ -18,6 +18,7 @@
 int main()
 {
 	#ifdef PROJECT1
+	/* Calling project1() defined in project1.c */
 	project1();
 	#endif
 	return 0;

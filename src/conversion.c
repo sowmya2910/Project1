@@ -21,60 +21,64 @@
 #include"conversion.h"
 uint8_t my_itoa(int32_t data,uint8_t* ptr, uint32_t base)
 {
- 
-uint8_t l=1;
-int flag=0;
-int8_t i=0,j=0;			       
-uint8_t temp;
-
-if(data==0)
-  {
-    *(ptr+l++)='0';
-    return 0;
-  }
-
-if (data<0)
-  {
-   flag=1;
-   data = -1*data;
-  }
-
-while(data!=0)
-  {
-   uint32_t remainder=data % base;
-   if(remainder>9)
-    {
-      *(ptr+l++)=(remainder-10)+'a';
-     }
-   else
-     {
-      *(ptr+l++)= remainder+'0';
-     }
- data = data/base;
-  }
-
-if(flag==1)
-  {
-   *(ptr+l++)='-';
-  }
-
-
-i=l-1;
-j=0;
- while(j <i)				
-       {
-         temp= *(ptr+j);
-         *(ptr+j) = *(ptr+i);
-         *(ptr+i)=temp;
-         j++;
-         i--;
-       }
-*(ptr+l)='\0';
-printf("%s\n",ptr);
-
-
-//printf("%lu\n",l);
-return l;
+	/* Initializing variables */
+	int f=0;
+	uint8_t len=1;
+	uint8_t t;
+	int8_t i=0,j=0;	
+	/* Checking if data is NULL */		       
+	if(data==0)
+  	{
+		/* Initializing to null and returning 0*/
+    		*(ptr+len++)='0';
+    		return 0;
+  	}
+	if (data<0) /* Checking if data is negative */
+  	{
+		/* Setting flag to 1 and changing sign */
+   		f=1;
+   		data = -1*data;
+  	}
+	while(data!=0) /* Checking if data is not zero (zero conditions) */
+  	{
+		/* Calculating remainder */
+   		uint32_t remainder=data % base;
+		/* Checking remainder and changing pointer value */
+   		if(remainder>9)
+    		{
+      			*(ptr+len++)=(remainder-10)+'a';
+     		}
+   		else
+     		{
+      			*(ptr+len++)= remainder+'0';
+     		}
+		/* Dividing data by base */
+ 		data = data/base;
+  	}
+	if(f==1) /* Checking if flag is 1 */
+  	{
+		/* Appending with - */
+   		*(ptr+len++)='-'; 
+  	}
+	/* Initializing i and j */
+	i=len-1;
+	j=0;
+	/* Check if start of ptr is less than its length */
+ 	while(j <i)				
+       	{
+		/* Swap operation */
+         	t= *(ptr+j);
+         	*(ptr+j) = *(ptr+i);
+         	*(ptr+i)=t;
+		/* Increment j and decement i */
+         	j++;
+         	i--;
+       	}
+	/* Append last character to null*/
+	*(ptr+len)='\0';
+	printf("%s\n",ptr);
+	/* Return length */
+	return len;
 }
 
 /******************************************************************//****
@@ -88,64 +92,56 @@ return l;
 int32_t my_atoi(uint8_t *ptr, uint8_t digits, uint32_t base)
 {
 	int i=0,q=0;
-int flag;
-int32_t res=0;
-int32_t value=0;
-//int32_t multiplier=1;
-int32_t counter=0;
-
-if(*ptr == '-')
-{
-
-i++;
-q++;
-counter++;
-flag=1;
-}
-
-if(base==10)
-{
-while(i<digits-1)
-  {
-res= res*10+*(ptr+i)-'0';
-i++;
-  }
-}
-
-if(base==2)
-{
-while(i<digits-1)
-  {
-   res = res + *(ptr+i) * (2^(digits-2-i));
-   i++;
-  }
-}
-if(base==16)
-{
-
-
-while(i<digits-1) 
-  {
-  if((*(ptr+i)-'0')>9)
-   {
-   value = *(ptr+i)-'a'+10;
+	int flag;
+	int32_t res=0;
+	int32_t value=0;
+	int32_t counter=0;
+	if(*ptr == '-')
+	{
+		i++;
+		q++;
+		counter++;
+		flag=1;
+	}
+	if(base==10)
+	{
+		while(i<digits-1)
+  		{
+			res= res*10+*(ptr+i)-'0';
+			i++;
+  		}
+	}
+	if(base==2)
+	{
+		while(i<digits-1)
+  		{
+   			res = res + *(ptr+i) * (2^(digits-2-i));
+   			i++;
+  		}
+	}
+	if(base==16)
+	{
+		while(i<digits-1) 
+  		{
+  			if((*(ptr+i)-'0')>9)
+   			{
+   				value = *(ptr+i)-'a'+10;
    
-   }
-  else
-  {
-  value=*(ptr+i);
-  value = value - '0';
-  }  
-
-i++;
-res =res*16+value;
-}
-}
-if(flag==1)
-{
-res= -1*res;
-}
-return res;
+   			}
+  			else
+  			{
+  				value=*(ptr+i);
+  				value = value - '0';
+  			}  
+			i++;
+			res =res*16+value;
+		}
+	}
+	if(flag==1)
+	{
+		res= -1*res;
+	}
+	return res;
 }
 
 
@@ -165,8 +161,6 @@ int8_t big_to_value32(uint32_t *data,uint32_t length)
     {
 	/*The conversion is done from big to little endian */
     	value=((*data &0X000000FF)<<24)|((*data &0X0000FF00)<<8)|((*data &0X00FF0000)>>8)|((*data &0XFF000000)>>24);
-	/* The value in little endian is printed */
-        printf("The little endian term of %x is %x \n",*data,value);
 	/* Length is decremented and data is incremented */
         length--;
         data++;
@@ -193,15 +187,13 @@ int8_t little_to_big32(uint32_t *data,uint32_t length)
 	{
 		/* The conversion is done from little to big endian */
         	value=((*data &0X000000FF)<<24)|((*data &0X0000FF00)<<8)|((*data &0X00FF0000)>>8)|((*data &0XFF000000)>>24);
-		/* The value in big endian is printed */
-        	printf("The big endian term of %x is %x \n ",*data,value);
 		/* Length is decremented and data is incremented */
         	length--;
         	data++;
     	}
-    else
-    {
-    	return 0;
-    }
-return value;
+        else
+        {
+    		return 0;
+        }
+	return value;
 }
