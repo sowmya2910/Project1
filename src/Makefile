@@ -1,4 +1,3 @@
-
 -include sources.mk
 
 #flags
