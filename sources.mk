@@ -1,4 +1,4 @@
-#SOURCES FOR PLATFORMS
+#SOURCES
 
 COM_SOURCES = \
 ./conversion.c \
